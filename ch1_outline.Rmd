@@ -17,5 +17,14 @@ library(rmarkdown)
 library(rticles)
 ```
 
+* @gassebner2008 argue that terrorist attacks will lead to the incumbent loss of office. Theoretically their argument is derived from the work of @barro1973 and @ferejohn1986a. The government, operationalized as the incumbent cabinet, extracts rent in order to provide public goods. The public will re-elect the incumbent so long as the incumbent provides sufficient public goods with that rent. A primary public good is security, and when terrorist events occur the public believes that security is not being provided. Thus, terrorism is predicted to always have a negative affect on the incumbent's electoral prospects because the public never sees all the security provided, rather they only see the security failures. Thus, any terrorism always indicates incompetence of leadership in the eyes of the voters.  
+    - @barro1973 Incumbents prefer to pursue their own ideal point when elections are absent: maximize their own personal income through increased taxes and decreased public goods. When elections are present, the incumbent must justify high taxes with a provision of public goods.  
+    - @ferejohn1986a argues that voters base their vote on the behavior of incumbents relative to challengers' proposed alternatives. When the incumbent is deemed incompetent of accomplishing his/her proposed policy then the challenger should win.  
+    
+* @aksoy2014 argues that more permissive electoral systems (defined as allowing more extreme groups to run for office, or not barring them) experience less terrorism. This is because it provides 
+    - @schmid1992 argues that democracies are particularly prone to terrorism because of their allowance of freedom of movement and association. This freedom makes it easier, and thus less costly for terrorists to form groups and attacks. Moreover, the need for the democratic state to rely on the legitimacy of peaceful democratic governance makes it difficult for them to fight back violently. This finding was empirically echoed later by @eubank1994
+    - @chenoweth2010 
+
 * @alonso2013 suggests that the party in power in Spain struggled as a result of terrorism in two cases. First, the Partido Popular (PP), the nationalist conservative party in Spain, lost its 2004 election in no small part because of its mismanagement of the fallout of the 2004 Madrid train bombings. Second, the national consensus on fighting terrorism was broken when the PSOE (Partido Socialista Obredor Espanol), the socialist party, did not stop negotiations in 2006 after ETA broken their 2005 truce. 
     - @rigo2005 also argues that Aznar, the Spanish Prime Minister from the PP, and the PP in general lost in the 2004 election because of his treatment of the post-11M recovery. 
+    
