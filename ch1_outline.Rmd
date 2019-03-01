@@ -22,7 +22,9 @@ library(rticles)
     - @ferejohn1986a argues that voters base their vote on the behavior of incumbents relative to challengers' proposed alternatives. When the incumbent is deemed incompetent of accomplishing his/her proposed policy then the challenger should win.  
     
 * @aksoy2014 argues that more permissive electoral systems (defined as allowing more extreme groups to run for office, or not barring them) experience less terrorism. This is because it provides 
-    - @schmid1992 argues that democracies are particularly prone to terrorism because of their allowance of freedom of movement and association. This freedom makes it easier, and thus less costly for terrorists to form groups and attacks. Moreover, the need for the democratic state to rely on the legitimacy of peaceful democratic governance makes it difficult for them to fight back violently. This finding was empirically echoed later by @eubank1994
+    - @schmid1992 argues that democracies are not particularly prone to terrorism because of their allowance of freedom of movement and association. This freedom makes it easier to express opinioins legally, and thus provides less incentive to use violence.
+    - @eubank1994 argue and empirically validate that those same civil liberties @schmid1992 says should dissuade vioelnt tactics actually make it easier to be violent. And thus, lower costs of terrorism increase its occurence. 
+    - @li2005 
     - @chenoweth2010 
 
 * @alonso2013 suggests that the party in power in Spain struggled as a result of terrorism in two cases. First, the Partido Popular (PP), the nationalist conservative party in Spain, lost its 2004 election in no small part because of its mismanagement of the fallout of the 2004 Madrid train bombings. Second, the national consensus on fighting terrorism was broken when the PSOE (Partido Socialista Obredor Espanol), the socialist party, did not stop negotiations in 2006 after ETA broken their 2005 truce. 
