@@ -1,0 +1,636 @@
+---
+title: "Colombia_data"
+author: "Christopher Junk"
+date: "5/30/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+path <- "C:/Users/Christopher/Documents/Dissertation/data/"
+```
+
+Load the Colombia GTD data.
+```{r Colombia Terrorism Data, cache=TRUE}
+gtd_col <- read.csv(paste0(path, "gtd_all_1970-2017.csv")) %>% 
+           filter(country_txt == "Colombia")
+     
+#Department-year gtd data      
+gtd_year_dept <- gtd_col %>% 
+  mutate(n = 1) %>% 
+  group_by(iyear, provstate) %>% 
+  summarise(nkill = sum(nkill, na.rm = T),
+            nwound = sum(nwound, na.rm = F), 
+            n = sum(n, na.rm = F)) %>% 
+  select(dept = provstate, 
+         year = iyear, 
+         nkill = nkill, 
+         nwound = nwound, 
+         n = n)
+
+#Department-week gtd data
+gtd_date_dept <- gtd_col %>% 
+  filter(provstate != "Unknown", iyear > 1999) %>% 
+  mutate(n = 1) %>% 
+  group_by(iyear, imonth, iday, provstate) %>% 
+  summarise(nkill = sum(nkill, na.rm = T),
+            nwound = sum(nwound, na.rm = F), 
+            n = sum(n, na.rm = F)) %>% 
+  mutate(date = as.Date(paste0(imonth, "-", iday, "-", iyear), "%M-%d-%Y"),
+         week = format(date, "%Y-%U")) %>% 
+  ungroup() %>% 
+  group_by(provstate, week) %>% 
+  summarise(n = sum(n),
+            nkill = sum(nkill), 
+            nwound = sum(nwound))
+
+
+
+```
+
+```{r Colombia Shape Files, cache=T}
+require(rgdal)
+#require(raster)
+
+col0 <- readOGR(paste0(path, "col_shape/COL_adm0.shp"))
+col1 <- readOGR(paste0(path, "col_shape/COL_adm1.shp"))
+col2 <- readOGR(paste0(path, "col_shape/COL_adm2.shp"))
+
+plot(col0) #colombia country
+plot(col1) #colombia provinces (departments)
+plot(col2) #colombia municipalities
+
+col_shape_df <- col1@data %>% 
+  select(dept = NAME_1, 
+         id = ID_1)
+
+col_dept <- col_shape_df
+```
+
+```{r Reconcile Province Name Differences, cache=TRUE}
+gtd_dept_names <- as.character(unique(gtd_date_dept$provstate)) %>% sort()
+  gtd_dept_names <- gtd_dept_names[-c(5, 9, 25)] #These are not provinces in the shape file - Bogota and Canindeyu 
+  gtd_dept_names <- gtd_dept_names[c(1, 2, 3, 4, 5, 6, 13, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32)]
+
+  
+shape_dept_names <- as.character(unique(col_dept$dept)) %>% sort()
+
+dept_names <- cbind(gtd_dept_names, shape_dept_names) %>% 
+  data.frame(stringsAsFactors = F) %>% 
+  select(gtd = gtd_dept_names,
+         shape = shape_dept_names) %>% 
+  mutate(dept_final = shape)
+
+dept_names$gtd[32] <- dept_names$gtd[30]
+dept_names$gtd[31] <- dept_names$gtd[29]
+dept_names$gtd[30] <- dept_names$gtd[28]
+dept_names$gtd[29] <- dept_names$gtd[27]
+dept_names$gtd[28] <- dept_names$gtd[26]
+dept_names$gtd[27] <- dept_names$gtd[25]
+dept_names$gtd[26] <- NA
+dept_names$gtd[25] <- dept_names$gtd[24]
+dept_names$gtd[24] <- dept_names$gtd[23]
+dept_names$gtd[23] <- NA
+
+
+
+
+
+
+
+
+Encoding(dept_names$gtd) <- "UTF-8"
+Encoding(dept_names$shape) <- "UTF-8"
+Encoding(dept_names$dept_final) <- "UTF-8"
+
+gtd_date_dept <- gtd_date_dept %>%
+  mutate(gtd = provstate) %>% 
+  left_join(dept_names)
+
+```
+
+```{r Create Colombia Department-Year and Department-Week dataframes, cache=T}
+col_dept <- col_shape_df %>% 
+  select(dept) %>% 
+  data.frame(stringsAsFactors = F) %>% 
+  mutate(dept = as.character(dept))
+
+Encoding(col_dept$dept) <- "UTF-8"
+
+years <- 1970:2017
+
+
+col_dept_yr <- col_dept %>% 
+  uncount(length(years)) %>% 
+  group_by(dept) %>% 
+  mutate(year = seq(1970, 2017)) %>%
+  ungroup() %>% 
+  select(gtd = dept,
+         year) %>% 
+  left_join(dept_names) %>% 
+  left_join(gtd_year_dept) %>% 
+  mutate(n = replace_na(n, 0),
+         nwound = replace_na(nwound, 0), 
+         nkill = replace_na(nkill, 0)) 
+
+col_dept_yr %>% 
+  ggplot(aes(x = year, 
+             y = n, 
+             color = nkill + nwound)) + 
+  geom_line(size = .8) + 
+  scale_color_gradient(low = 'black', 
+                      high = 'red') +
+  facet_wrap(. ~ dept_final)
+
+col_dept_yr %>% 
+  ggplot(aes(x = nkill + nwound, 
+             y = n)) +
+  geom_point()
+
+# Weekly data
+weeks <- data.frame(week = seq.Date(from = as.Date("2000/01/01"),
+                                    to = as.Date("2017/12/31"),
+                                    by = 'week')) %>% 
+  mutate(week = format(week, "%Y-%U"))
+
+
+
+col_dept_wk <- col_dept %>% 
+  uncount(940) %>% 
+  group_by(dept) %>% 
+  mutate(week = seq.Date(from = as.Date("2000/01/01"),
+                                    to = as.Date("2017/12/31"),
+                                    by = 'week'),
+         week = format(week, "%Y-%U")) %>% 
+  ungroup() %>% 
+  select(shape = dept, 
+         week) %>% 
+  left_join(dept_names) %>% 
+  left_join(gtd_date_dept) %>% 
+  mutate(n = replace_na(n, 0),
+         nwound = replace_na(nwound, 0), 
+         nkill = replace_na(nkill, 0)) %>% 
+  select(week,
+         dept_final,
+         n,
+         nwound, 
+         nkill)
+
+```
+
+```{r Colombia Water Data}
+#Create shape objects that do not overlap themselves 
+col1 <- raster::shapefile(paste0(path, "col_shape/COL_adm1.shp")) %>% 
+  rgeos::gBuffer(byid=TRUE, width=0)
+col_water <- raster::shapefile(paste0(path, "col_wat/COL_water_areas_dcw.shp"))%>% 
+  rgeos::gBuffer(byid=TRUE, width=0)
+
+#Check coordinate origins
+sf::st_crs(col1)
+sf::st_crs(col_water)
+
+#Use Raster to get the intersection of water area in a department 
+water <- raster::intersect(col_water, col1)
+
+#Calculate the area of the water in each department 
+water_area <- raster::area(water)
+
+#Put it into a dataframe 
+water_data <- water@data %>% 
+ cbind(water_area) %>% 
+  data.frame() %>% 
+  group_by(NAME_1) %>% 
+  summarise(water_area = round((sum(water_area)/(1000*1000)), 0)) %>% #round to nearest km^2
+  mutate(shape = NAME_1)
+Encoding(water_data$shape) <- "UTF-8"
+
+#Get area of department in km^2
+dept_area <- round((raster::area(col1)/(1000*1000)),0)
+
+col1_data <- col1@data %>% 
+  cbind(dept_area) %>% 
+  data.frame()
+
+col1_area_water <- left_join(col1_data, water_data) %>% 
+  select(shape, water_area, dept_area) %>% 
+  mutate(water_prop = water_area/dept_area) %>% 
+  left_join(dept_names)
+
+col_dept_wk <- col_dept_wk %>% left_join(col1_area_water)
+
+remove(col_water, water, water_area, water_data, col1_area_water)
+```
+
+```{r Colombia Roads, cache=T}
+library(sf)
+col1_sf = read_sf(paste0(path, "col_shape/COL_adm1.shp"))
+col_road = read_sf(paste0(path, "col_roads/COL_roads.shp"))
+# intersection
+int = st_intersection(col_road, col1_sf)
+# find out about the length of each line segment
+int$len = st_length(int)
+# use a meaningful id (so far consists only of 0s)
+col1_sf$Id = 1:nrow(col1_sf)
+# spatial overlay
+join_col1_road = st_join(col1_sf, int)
+# use the ID of the polygon for the aggregation
+col1_road_join = group_by(join_col1_road, NAME_1.x) %>%
+  summarize(length = sum(len))
+# find out about polygons without line segments 
+filter(col1_road_join, is.na(length))
+# you can set the length of the polygons without line intersections to 0 
+# if you want
+col1_road_join <- col1_road_join %>% 
+  mutate(length = ifelse(is.na(length), 
+                         0, 
+                         length), 
+         road_length_km = length / 1000,
+         shape = as.character(NAME_1.x)) %>% 
+  select(shape,
+         NAME_1.x, 
+         road_length_km) %>% 
+  right_join(dept_names)
+
+col_dept_wk <- col_dept_wk %>% left_join(col1_road_join)
+
+remove(col_dept, col_road, col0, col1, col1_data, col1_road_join, col1_sf, col2, gtd_col, gtd_date_dept, gtd_year_dept, int, join_col1_road, dept_area, gtd_dept_names, shape_dept_names)
+```
+
+```{r Colombia Elevation, cache=T}
+col1 <- raster::shapefile(paste0(path, "col_shape/COL_adm1.shp")) %>% 
+  rgeos::gBuffer(byid=TRUE, width=0)
+
+col_elevation <- rgdal::readGDAL(paste0(path, "col_elevation/COL_alt.vrt"))
+col_elevation@proj4string
+col_elevation_raster <- raster::raster(rgdal::readGDAL(paste0(path, "col_elevation/COL_alt.vrt")))
+
+col1 <- spTransform(col1, CRSobj = raster::crs(col_elevation_raster))
+
+col1
+raster::crs(col_elevation_raster)
+
+
+plot(col_elevation_raster)
+plot(col1, add = T)
+
+col1_elevation <- raster::extract(col_elevation_raster, col1, df = T)
+
+p1_el <- raster::extract(col_elevation_raster, col1[1,], df = T) %>% 
+  mutate(shape = col1[1,]@data$NAME_1)
+
+p2_el <- raster::extract(col_elevation_raster, col1[2,], df = T) %>% 
+  mutate(shape = col1[2,]@data$NAME_1)
+
+p3_el <- raster::extract(col_elevation_raster, col1[3,], df = T) %>% 
+  mutate(shape = col1[3,]@data$NAME_1)
+
+p4_el <- raster::extract(col_elevation_raster, col1[4,], df = T) %>% 
+  mutate(shape = col1[4,]@data$NAME_1)
+
+p5_el <- raster::extract(col_elevation_raster, col1[5,], df = T) %>% 
+  mutate(shape = col1[5,]@data$NAME_1)
+
+p6_el <- raster::extract(col_elevation_raster, col1[6,], df = T) %>% 
+  mutate(shape = col1[6,]@data$NAME_1)
+
+p7_el <- raster::extract(col_elevation_raster, col1[7,], df = T) %>% 
+  mutate(shape = col1[7,]@data$NAME_1)
+
+p8_el <- raster::extract(col_elevation_raster, col1[8,], df = T) %>% 
+  mutate(shape = col1[8,]@data$NAME_1)
+
+p9_el <- raster::extract(col_elevation_raster, col1[9,], df = T) %>% 
+  mutate(shape = col1[9,]@data$NAME_1)
+
+p10_el <- raster::extract(col_elevation_raster, col1[10,], df = T) %>% 
+  mutate(shape = col1[10,]@data$NAME_1)
+
+p11_el <- raster::extract(col_elevation_raster, col1[11,], df = T) %>% 
+  mutate(shape = col1[11,]@data$NAME_1)
+
+p12_el <- raster::extract(col_elevation_raster, col1[12,], df = T) %>% 
+  mutate(shape = col1[12,]@data$NAME_1)
+
+p13_el <- raster::extract(col_elevation_raster, col1[13,], df = T) %>% 
+  mutate(shape = col1[13,]@data$NAME_1)
+
+p14_el <- raster::extract(col_elevation_raster, col1[14,], df = T) %>% 
+  mutate(shape = col1[14,]@data$NAME_1)
+
+p15_el <- raster::extract(col_elevation_raster, col1[15,], df = T) %>% 
+  mutate(shape = col1[15,]@data$NAME_1)
+
+p16_el <- raster::extract(col_elevation_raster, col1[16,], df = T) %>% 
+  mutate(shape = col1[16,]@data$NAME_1)
+
+p17_el <- raster::extract(col_elevation_raster, col1[17,], df = T) %>% 
+  mutate(shape = col1[17,]@data$NAME_1)
+
+p18_el <- raster::extract(col_elevation_raster, col1[18,], df = T) %>% 
+  mutate(shape = col1[18,]@data$NAME_1)
+
+p19_el <- raster::extract(col_elevation_raster, col1[19,], df = T) %>% 
+  mutate(shape = col1[19,]@data$NAME_1)
+
+p20_el <- raster::extract(col_elevation_raster, col1[20,], df = T) %>% 
+  mutate(shape = col1[20,]@data$NAME_1)
+
+p21_el <- raster::extract(col_elevation_raster, col1[21,], df = T) %>% 
+  mutate(shape = col1[21,]@data$NAME_1)
+
+p22_el <- raster::extract(col_elevation_raster, col1[22,], df = T) %>% 
+  mutate(shape = col1[22,]@data$NAME_1)
+
+p23_el <- raster::extract(col_elevation_raster, col1[23,], df = T) %>% 
+  mutate(shape = col1[23,]@data$NAME_1)
+
+p24_el <- raster::extract(col_elevation_raster, col1[24,], df = T) %>% 
+  mutate(shape = col1[24,]@data$NAME_1)
+
+p25_el <- raster::extract(col_elevation_raster, col1[25,], df = T) %>% 
+  mutate(shape = col1[25,]@data$NAME_1)
+
+p26_el <- raster::extract(col_elevation_raster, col1[26,], df = T) %>% 
+  mutate(shape = col1[26,]@data$NAME_1)
+
+p27_el <- raster::extract(col_elevation_raster, col1[27,], df = T) %>% 
+  mutate(shape = col1[27,]@data$NAME_1)
+
+p28_el <- raster::extract(col_elevation_raster, col1[28,], df = T) %>% 
+  mutate(shape = col1[28,]@data$NAME_1)
+
+p29_el <- raster::extract(col_elevation_raster, col1[29,], df = T) %>% 
+  mutate(shape = col1[29,]@data$NAME_1)
+
+p30_el <- raster::extract(col_elevation_raster, col1[30,], df = T) %>% 
+  mutate(shape = col1[30,]@data$NAME_1)
+
+p31_el <- raster::extract(col_elevation_raster, col1[31,], df = T) %>% 
+  mutate(shape = col1[31,]@data$NAME_1)
+
+p32_el <- raster::extract(col_elevation_raster, col1[32,], df = T) %>% 
+  mutate(shape = col1[32,]@data$NAME_1)
+
+col1_elevation <- rbind(p1_el, p10_el, p11_el, p12_el, p13_el, p14_el, p15_el, p16_el, p17_el, p18_el, p19_el, p2_el, p20_el, p21_el, p22_el, p23_el, p24_el, p25_el, p26_el, p27_el, p28_el, p29_el, p3_el, p30_el, p31_el, p32_el, p4_el, p5_el, p6_el, p7_el, p8_el, p9_el) %>% data.frame() %>% 
+  group_by(shape) %>% 
+  summarise(max_el = max(band1, na.rm = T),
+            min_el = min(band1, na.rm = T), 
+            var_el = var(band1, na.rm=T)) %>% 
+  mutate(diff_el = max_el - min_el, 
+         rank_diff = rank(-diff_el),
+         rank_var = rank(-var_el),
+         shape = as.character(shape))
+
+Encoding(col1_elevation$shape) <- "UTF-8"
+
+col_dept_wk <- col_dept_wk %>%
+  left_join(dept_names) %>% 
+  left_join(col1_elevation) %>% 
+  group_by(dept_final) %>% 
+  mutate(t = seq_along(dept_final), 
+         t2 = t^2, 
+         t3 = t^3)
+
+remove(p1_el, p10_el, p11_el, p12_el, p13_el, p14_el, p15_el, p16_el, p17_el, p18_el, p19_el, p2_el, p20_el, p21_el, p22_el, p23_el, p24_el, p25_el, p26_el, p27_el, p28_el, p29_el, p3_el, p30_el, p31_el, p32_el, p4_el, p5_el, p6_el, p7_el, p8_el, p9_el, col_elevation, col1, col_elevation_raster, weeks, years)
+
+#summary(glm((n > 0) ~ water_prop + dept_area + road_length_km + max_el + rank_var + as.factor(shape) + as.factor(week) + t + t2 + t3, data = col_dept_wk, family = binomial(link = 'logit')))
+
+```
+
+```{r Colombia census data, cache=T}
+col_pop <- foreign::read.dta(paste0(path, "col_census.dta")) %>% 
+  group_by(departmento, year) %>% 
+  summarise(pop_rural = sum(rural),
+            pop_total = sum(total)) %>% 
+  mutate(n = lead(year) - year,
+         n = ifelse(!is.na(n), 
+                    n, 
+                    1)) %>% 
+  uncount(n, .remove = F) %>% 
+  mutate(t = seq_along(departmento), 
+         year_new = 1985 + t-1) %>% 
+  uncount(ifelse(year_new == 2005, 
+                 10, 
+                 1)) %>% 
+  mutate(t = seq_along(departmento), 
+         year = 1985 + t-1) %>% 
+  ungroup() %>% 
+  mutate(departmento = stringr::str_replace(departmento, 
+                                            "Archipiélago de San Andrés",
+                                            "San Andrés y Providencia") %>% 
+           stringr::str_replace("Quindio",
+                                "Quindío")) %>% 
+  select(shape = departmento,
+         pop_rural,
+         pop_total, 
+         year) %>% 
+  left_join(dept_names)
+
+col_dept_wk <- col_dept_wk %>% 
+  mutate(year = as.numeric(stringr::str_replace(as.character(week), 
+                                     "-\\d{2}",
+                                     ""))) %>% 
+  left_join(col_pop)
+
+```
+
+```{r Colombia Coca, cache=T}
+col_coca <- read.csv(paste0(path, "Coca_2001_2010.csv"), stringsAsFactors = F)
+
+Encoding(col_coca$Municipio) <- "UTF-8"
+
+col_coca <- col_coca %>% 
+  mutate(municipio = stringr::str_replace_all(Municipio, 
+                                              "Û",
+                                              "ó"), 
+         municipio = stringr::str_replace_all(municipio, 
+                                              "\\.", 
+                                              "á"), 
+         municipio = stringr::str_replace_all(municipio,
+                                              "Ì",
+                                              "í"),
+         municipio = stringr::str_replace_all(municipio,
+                                              "Ò",
+                                              "ñ"),
+         municipio = stringr::str_replace_all(municipio,
+                                              "\\·",
+                                              "á"),
+         municipio = stringr::str_replace_all(municipio,
+                                              "\\?",
+                                              "ü"),
+         municipio = stringr::str_replace_all(municipio,
+                                              "È",
+                                              "é"))
+
+library(rvest)
+
+wiki <- read_html('https://en.wikipedia.org/wiki/Municipalities_of_Colombia') %>% 
+  html_nodes("a")  %>% 
+  html_text() %>% data.frame() %>% 
+  janitor::clean_names()
+
+wiki_departments <- wiki %>%
+  mutate(text = as.character(x), 
+         keep = stringr::str_detect(text, 
+                                    "Department") & 
+           !stringr::str_detect(text, 
+                                "\\d"),
+         test = ifelse(keep == T, 
+                       text, 
+                       ""),
+         sum = cumsum(keep),
+         test = ifelse(sum == 0, 
+                       "", 
+                       text)) %>% 
+  filter(!sum == 0, 
+         !text == "edit", 
+         !text == "") %>% 
+  group_by(sum) %>% 
+  mutate(department = test[1], 
+         shape = stringr::str_remove(department, " Department")) %>% 
+  left_join(dept_names) %>% 
+  select(municipio = test, 
+         shape = shape)
+
+col_coca <- col_coca %>% 
+  left_join(wiki_departments)
+
+col_coca_fixed <- col_coca %>% 
+  mutate(shape = ifelse(municipio %in% list("El Carmen De Viboral", "San Pedro De Uraba", "Santa Rosa De Osos", "Sonson", "Vegachí", "Vigía Del Fuerte", "Yalí"), 
+                             "Antioquia", 
+                             shape), 
+         shape = ifelse(municipio %in% list("Altos Del Rosario", "Arenal", "Barranco De Loba", "Río Viejo", "San Jacinto Del Cauca", "San Martín De Loba", "Santa Rosa Del Sur", "San Pablo De Borbur"), 
+                        "Bolívar", 
+                        shape),
+         shape = ifelse(municipio %in% list("Belén De Los Andaquies", "Cartagena Del Chairá", "San José Del Fragua", "San Vicente Del Caguán"), 
+                        "Caquetá", 
+                        shape),
+         shape = ifelse(municipio %in% list("Cajibío", "López", "Sotara", "Timbiquí"), 
+                        "Cauca", 
+                        shape),
+         shape = ifelse(municipio %in% list("Alto Baudo", "El Cantón Del San Pablo", "El Litoral Del San Juan",  "San José Del Palmar"), 
+                        "Chocó", 
+                        shape),
+         shape = ifelse(municipio %in% list("Uribe", "San Juan De Arama", "Vistahermosa"), 
+                        "Meta", 
+                        shape),
+         shape = ifelse(municipio %in% list("Ancuyá", "Magüi", "Sandoná"), 
+                        "Nariño", 
+                        shape),
+         shape = ifelse(municipio %in% list("Cücuta", "Cachirá", "Hacarí", "Tibü"), 
+                        "Norte de Santander", 
+                        shape),
+         shape = ifelse(municipio %in% list("El Carmen De Chucurí", "Palmas Del Socorro", "Sabana De Torres", "Santa Helena Del Opón", "San Vicente De Chucurí", "Valle Del Guamuez", "Villagarzón"), 
+                        "Santander", 
+                        shape),
+         shape = ifelse(municipio %in% list("Valle Del Guamuez", "Villagarzón"), 
+                        "Putumayo", 
+                        shape),
+         shape = ifelse(municipio %in% list("Miriti - Paraná"), 
+                        "Amazonas", 
+                        shape),
+         shape = ifelse(municipio %in% list("Inírida", "Morichal", "San José Del Guaviare"), 
+                        "Guainía", 
+                        shape),
+         shape = ifelse(municipio %in% list("Mitü", "Papunaua", "Yavaraté"), 
+                        "Vaupés", 
+                        shape))
+  
+col_coca_dept_yr <- col_coca_fixed %>% 
+  group_by(shape, year) %>% 
+  summarise(coca = sum(Coca_ha))
+
+col_dept_wk <- col_dept_wk %>% 
+  select(-geometry) %>% 
+  left_join(col_coca_dept_yr) %>% 
+  mutate(coca = replace_na(coca, 0))
+  
+remove(col_coca, col_coca_dept_yr, col_coca_fixed, wiki, wiki_departments, col_pop, col_shape_df, col1_elevation)
+
+```
+
+```{r Colombia Drug and Farm Seizure, cache=T}
+col_drug_seiz <- openxlsx::read.xlsx(paste0(path, "drug_seiz_2011-2016.xlsx")) %>% 
+  janitor::clean_names() %>% 
+  filter(country == "Colombia")
+
+
+col1 <- readOGR(paste0(path, "col_shape/COL_adm1.shp"))
+col1 <- sf::read_sf(paste0(path, "col_shape/COL_adm1.shp"))
+
+geo <- sf::st_coordinates(col1[2]) #%>% data.frame()
+plot(geo)
+
+library(ggmap)
+  
+
+  # ggplot(col1_df) +
+  #   aes(long,lat) + 
+  # geom_polygon() + 
+  #   geom_point(data = test, aes(x = test[,1], y = test[,2]))
+
+
+test <- geocode("Medellin, Colombia")
+test_map <- get_map("Antiquia, Colombia", zoom = 8)
+
+sp::point.in.polygon(test$lat, 
+                     test$lon, 
+                     geo$Y, 
+                     geo$X)
+  
+ggmap(test_map) + geom_point(data = test, aes(x = lon, y = lat), color = 'red', size = 10)
+
+yes <- 0
+for(i in 1:32){
+  yes <- sp::point.in.polygon(point.x = test$lon,
+                     point.y = test$lat, 
+                     pol.x = col1@polygons[[i]]@Polygons[[1]]@coords[,1], 
+                     pol.y = col1@polygons[[i]]@Polygons[[1]]@coords[,2])
+  c <- c(yes, i)
+  print(c)
+}
+
+library(rgeos)
+library(sp)
+library(rgdal)
+
+
+  
+  sp::point.in.polygon(point.x = test[1,1],
+                     point.y = test[1, 2], 
+                     pol.x = col1@polygons[[5]]@Polygons[[1]]@coords[,1], 
+                     pol.y = col1@polygons[[5]]@Polygons[[1]]@coords[,2])
+
+  
+col_drug_seiz %>% 
+  add_count(drug_name) %>% 
+  ggplot(aes(x = drug_name,
+             y = n)) + 
+  geom_col() + 
+  coord_flip()
+
+col_farm_seiz <- read.csv(paste0(path, "rural_prop_seized_col.csv"))
+
+```
+
+```{r Colombia Displaced Persons}
+col_displaced <-  read.csv(paste0(path, "desplazamiento-1999-2014.csv")) %>% 
+  janitor::clean_names() %>% 
+  gather("x1999", "x2000", "x2001", "x2002", "x2003", "x2004", "x2005", "x2006", "x2007", "x2008", "x2009", "x2010", "x2011", "x2012", "x2013", "x2014",
+         key = "year",
+         value = "displaced") %>% 
+  mutate(year = as.numeric(stringr::str_remove(year, "x")))
+```
+
+https://data.humdata.org/dataset/humanitarian-trends (2012-2014)
+```{r Colombia Humanitarian Trends}
+col_hum_trend_i <- read.csv(paste0(path, "140625-humanitarian-trends-i-trim_col.csv"), 
+                          sep = ";") %>% 
+  janitor::clean_names()
+
+col_hum_trend_ii <- read.csv(paste0(path, "141212-humanitarian-trends-iii-trim_col.csv")) %>% 
+  janitor::clean_names()
+```
+

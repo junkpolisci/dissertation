@@ -17,16 +17,73 @@ library(rmarkdown)
 library(rticles)
 ```
 
-* @gassebner2008 argue that terrorist attacks will lead to the incumbent loss of office. Theoretically their argument is derived from the work of @barro1973 and @ferejohn1986a. The government, operationalized as the incumbent cabinet, extracts rent in order to provide public goods. The public will re-elect the incumbent so long as the incumbent provides sufficient public goods with that rent. A primary public good is security, and when terrorist events occur the public believes that security is not being provided. Thus, terrorism is predicted to always have a negative affect on the incumbent's electoral prospects because the public never sees all the security provided, rather they only see the security failures. Thus, any terrorism always indicates incompetence of leadership in the eyes of the voters.  
-    - @barro1973 Incumbents prefer to pursue their own ideal point when elections are absent: maximize their own personal income through increased taxes and decreased public goods. When elections are present, the incumbent must justify high taxes with a provision of public goods.  
-    - @ferejohn1986a argues that voters base their vote on the behavior of incumbents relative to challengers' proposed alternatives. When the incumbent is deemed incompetent of accomplishing his/her proposed policy then the challenger should win.  
-    
-* @aksoy2014 argues that more permissive electoral systems (defined as allowing more extreme groups to run for office, or not barring them) experience less terrorism. This is because it provides 
-    - @schmid1992 argues that democracies are not particularly prone to terrorism because of their allowance of freedom of movement and association. This freedom makes it easier to express opinioins legally, and thus provides less incentive to use violence.
-    - @eubank1994 argue and empirically validate that those same civil liberties @schmid1992 says should dissuade vioelnt tactics actually make it easier to be violent. And thus, lower costs of terrorism increase its occurence. 
-    - @li2005 
-    - @chenoweth2010 
+# Faults of NHST 
+* @gill1999 provides a succinct and timeless set of arguments against the use of p-values in NHST testing. Most notable among these criticisms is that the determination a variable is certainly non-randomly associated with a dependent variable based on a p-value is a misinterpretation of the probability that is a p-value. This number only gives a probability that the observed relationship is distinct from what would expect at random, and offers no further insight into that relationship. Furthermore, in large samples p-values are much more likely to be small. The general standard of an alpha of .05 for statistical significance is also arbitrary and virtually meaningless, yet it dominates as a validation heuristic of many political science theories. In many cases the explanatory value added of a variable is not even discussed. 
 
-* @alonso2013 suggests that the party in power in Spain struggled as a result of terrorism in two cases. First, the Partido Popular (PP), the nationalist conservative party in Spain, lost its 2004 election in no small part because of its mismanagement of the fallout of the 2004 Madrid train bombings. Second, the national consensus on fighting terrorism was broken when the PSOE (Partido Socialista Obredor Espanol), the socialist party, did not stop negotiations in 2006 after ETA broken their 2005 truce. 
-    - @rigo2005 also argues that Aznar, the Spanish Prime Minister from the PP, and the PP in general lost in the 2004 election because of his treatment of the post-11M recovery. 
+* @schrodt2014 argues that the standard approach to methods in political science today if faulty for myriad reasons, including 'garbage can models', ignorance of assumptions, the use of advanced models out of their place or without a deep understanding, and the overuse of linear models.
+
+* @colaresi2017 shows that typical NHST in political science could benefit greatly from the use of machine learning methods. NHST approaches rarely, if ever, are self-contained in one estimation and judgement of a null hypothesis; rather, it is common for researchers to estimate and re-estimate models for robustness checks. However, for most cases each of these alternate specification uses the same sample, and does not consider how well the model performs outside of the data input into the model, thus openning itself up to overfitting. Notably, NHST assess the results of models largely based on the p-values of relevant variables, however these are highly dependent on model specification [@colaresi2017; @basuchoudhary2018]. Furthermore, statistical significance of a variable is not equivalent to effective prediction of the outcome of interest. 
+
+* @hindman2015 advocate machine learning on the grounds that OLS linear regression overstates the relationship of variables that have functionally zero relationship. He also argues that because the standard assumptions of OLS are never met (e.g. no omitted variable bias, not heteroscedasticty, etc.) there are never unbiased models, making inference difficult or overstated.  
+    - all models should be tested on two grounds: predictive accuracy and parsimony. Political science rarely worries about out of sample predictive accuracy  
+    - instead of using standard OLS one should use penalized regression, because it predicts better out of sample and produces more parsimonious models.
+
+* @ward2010a also rallies against p-values as an evaluative measure of theoretical validation. P-values offer no insight into whether or not a model is actually improved (in terms of predictive accuracy), and Ward et al. suggest that there are a variety of ways to test predictive added value which actually test a theories validity: removing a feature and considering how the AUC changes, or out-of-sample prediction assessment.
+
+* @levine2008 argue on several accounts that NHST is damaging. Primarily, they argue that the optimistic outlook on the fix-ability of NHST is misplaced given the problem has persisted for decades despite efforts to fix it. More specifically, they hone in on the fallacious conclusions people draw because of p-values. Most notably, if one concludes based on a p-value that P(Data|H0) is false, one has no grounds to conclude anything about P(H0|Data). One cannot infer the validity of a null hypothesis given the data based on a finding about the probability of observing the data given a null hypothesis. The central goal for which NHST is used, then, is wrong. Finally, they suggest a distinction between statistical H1 being true and the substantive story for H1 being true.
+
+* @gelman2014 argue that because p-values are data-dependent one must also consider the different variations of data that may have existed had the researcher not made certain coding decisions.
+
+# Machine Learning in Political Science
+
+## Data collection/coding
+* Several datasets that are commonly used in political science today use webscraping and machine learning a la natural language processing, specifically topic modeling and other classification algorithms [@pham2018; @nardulli2015; @boschee2019]
+
+* @greene2018a use a variety of supervised machine learning techniques to assess the @fariss2014 claim that as human rights standards have increased over time, the human-coded scales of political repression have become less reliable because the reports themselves have changed. They find that classifiers trained on older State Department Human Rights Reports are worse predictors of more modern classifications, indicating that there are indeed dynamic reporting processes of human rights violations that need to be accounted for. 
+
+* @minhas2015 use each stemmed and word (after removing stopwords) as features in an SVM to classify regime type according to the text the the state department Country Reports on Human Rights Practices and Freedom House's Freedom in the World reports. They achieve very high recall and accuracy according to the @geddes2014 and @hadenius2017. 
+
+* @saiya2019 argue that decision-trees are dramatically under-utilized in predicting violence. They argue using the START GTD terrorism data that religious and secular terrorism are predicted using different factors, and are thus fundamentally different processes to predict. They advocate the use of gain-ratio analysis and proxy tree analysis. 
+
+* @al-zewairi2017 uses four supervised machine learning approaches (distributed random forests, deep learning, naive bayes, and gradient boosting) to identify Islamic extremists from the Profiles of Individual Radicalization in the US [@start2018]). 
+
+* @burscher2015 use the Passive Aggresive learning algorithm to create a classifier that correctly labels the policy type of a given news article. This is an example of using machine learning to assist coding, which is one of the most common uses in political science. 
+
+* @croicu2015 use an ensemble method (built of SVM and NB, excluding random forests because of computational expense) to predict which articles are useful for identifying news articles that are relevant to protests to dramatically decrease the human-coding time needed to use news sources.
+
+## Evaluation of existing theory
+* @muchlinski2016 shows that random forests out-predict other forms of common models used in political science to predict rare events (logit, rare-events logit, L1-logit). Given a primary goal of theorizing about an outcome is predicting an outcome, it would be best to use the most effectively predicting models. 
+
+* @basuchoudhary2018 tests the predictive accuracy of what the NHST literature to date has found. Premised on the argument that parametric NHST suffers from four main problems: not interested in predictive accuracy, p-values are sensitive to model specification, cannot effectively compare variables' explanatory power, nonstandardized robustness checks, does not distinguish correlation from causation. 
+
+## Out of Sample Prediction 
+* @gleditsch2013 use logit models trained on data up to 1990 to develop a model to predict conflict outcome after 1990 using the Issue Correlates of War (ICOW) data. 
+
+* @blair2014 uses survey based local violence data across 240+ towns in Liberia to predict local violence in three different years. This is a prime example of high spatial variation but low temporal variation. 
+
+* @shutte2017 use poisson point process models to analyze the GED data [@sundberg2013] at local levels. They use dirichilet tesselation to avoid information loss from data aggregation resulting from ad hoc gridding of data. They use leave-one-out cross-validation, leaving out one country to use for out-of-sample prediction. Their model fits reasonably well, but they find that more parsimonious (3 variable) models predict best.
+
+* @witmer2017 have perhaps the most ambitious example of out-of-sample forecasting attempts. They used the ACLED data in 1-degree grid cells and simulated future climate data to predict subnational violence all the way into 2065. Obviously, this sort of work is impossible to validate, but it is quite a good example of the type of work that political science should strive for. While there is a strong argument to be made that this paper's forecasting model is relatively weak (most variables are country-level besides weather), the principal behind advocating predictive modeling should be more central to political science. The theories and research of political science is useful only inasmuch as it can actually identify when and where events will happen. 
+
+* @hill2013 use random forests to predict culpability of of terrorism in the Philippines (where previously multinomial logit and naive bayes were used). They use cross-validation via out-of-bag prediction to guard against overfitting of the model and find that Random forests predict as well or better than the others as long as there is no class imbalance problem.
+
+* @ding2017 use a variety of geo-coded data to predict terrorist events around the world in 2015. They achieve about a 96% accuracy rate using .1x.1 (latitude x longitude) grids around the world. They used neural networks, support vector machines, and random forests. 
+
+* @mueller2018 use Latent Dirichlet Allocation (LDA) models to asses topics in newspaper articles to predict the onset of civil war. They use LASSO machine learning techniques to predict the onset of civil conflict using the results of unsupervised machine learning. This is a very common sense finding from very complicated methods that made it into the APSR
+
+* @brandt2014 suggest that instead of RMSE and MAE probabilistic predictive models should be evaluated not by point metrics such as RMSE and MAE, but but a variety of tools common in meteorology that are optimized to assess predictive accuracy or probabilistic models. Many of these methods (ranked probability score for ordered categories of a discrete random variable, continuous rank probability scores for continuous options, verification rank histograms, probability integral transform, etc.). Each of these evaluation strategies focuses on different ways of considering how the predicted probability of an event matches up with the true outcome, and generally ranking by which predictions are best.
+
+#Democracy
+ 
+* @schmid1992 argues that democracies are not particularly prone to terrorism because of their allowance of freedom of movement and association. This freedom makes it easier to express opinions legally, and thus provides less incentive to use violence.
+
+* @eubank1994 argue and empirically validate that those same civil liberties @schmid1992 says should dissuade vioelnt tactics actually make it easier to be violent. And thus, lower costs of terrorism increase its occurence.
+    
+* @aksoy2014 argues that more permissive electoral systems (defined as allowing more extreme groups to run for office, or not barring them) experience less terrorism. This is because it provides a legal opportunity to change policy. As permissiveness decreases, election becomes more common close to elections, wherease electoral permissiveness decreases attacks temporally proximate to elections. 
+ 
+* @li2005 argues that the finding that civil liberties increase the occurence of terrorism is symptomatic of the true democratic mechanism that leads to terrorism: government constraints. They find that countries with high levels of government constraints (democracies) are more likely to have vibrant civil liberty freedoms, and thus the government has less ability to monitor and crack down on potential terrorists. 
+
+* @chenoweth2010 finds that political competition (Polity IV and Lijphart 1997) increase the origination of terrorism and the emergence of new domestic groups. Terrorism is more common in competitive political environments because groups must increase their attempts to vie for influence in an already crowded political space. Groups emerge when transnational terrorism targets a state because there is more opportunity to influence because of the confusion that emerges following transnational terrorism. 
+
+
     

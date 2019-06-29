@@ -1,0 +1,172 @@
+---
+title: "pakistan_data"
+author: "Christopher Junk"
+date: "5/30/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+path <- "C:/Users/Christopher/Documents/Dissertation/data/"
+```
+
+Load the Pakistan GTD and WITS data.
+```{r Pakistan Terrorism Data, cache=T}
+gtd_pak <- read.csv("C:/Users/Christopher/Documents/Dissertation/data/gtd_all_1970-2017.csv",
+                    stringsAsFactors = F) %>% 
+           filter(country_txt == "Pakistan") %>% 
+  mutate(date = as.Date(paste0(iyear, 
+                       "-",
+                       sprintf("%02d", imonth),
+                       "-",
+                       sprintf("%02d", iday)))) %>% 
+  select(date, 
+         everything()) %>% 
+  arrange(date)
+
+pak_wits <- foreign::read.dta(paste0(path, "PK_geo_wits_20100608.dta"))
+
+pak_bfrs <- read.csv(paste0(path, "bfrs.csv")) %>% 
+  janitor::clean_names() %>% 
+  mutate(day_start = as.Date(day_start, origin = "1960-01-01"),
+         day_end = as.Date(day_end, origin = "1960-01-01"))
+```
+
+Load data on Chinese aid distribution in Pakistan. 
+```{r China Aid Data, cache=T}
+china_aid_pak <- read.csv("C:/Users/Christopher/Documents/Dissertation/data/china_aid_data/data/level_1a.csv") %>% 
+  filter(recipients == "Pakistan")
+
+china_aid_pak %>% 
+  mutate(duration = round(transactions_end_year - transactions_start_year + 1, 
+                          0)) %>% 
+  uncount(duration,
+          .remove = F) %>% 
+  group_by(project_id) %>% 
+  mutate(seq = seq_along(duration),
+         y = transactions_start_year + seq - 1) %>% 
+  count(y) %>% 
+  ungroup() %>% 
+  mutate(y = reorder(y, n)) %>% 
+  ggplot(aes(x = y, 
+             y = n)) +
+  geom_col() + 
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r Pakistan Shape File, cache=T, include=F, eval=F}
+pak1 <- rgdal::readOGR("C:/Users/Christopher/Documents/Dissertation/data/PAK_adm/PAK_adm0.shp")
+pak2 <- rgdal::readOGR("C:/Users/Christopher/Documents/Dissertation/data/PAK_adm/PAK_adm1.shp")
+pak3 <- rgdal::readOGR("C:/Users/Christopher/Documents/Dissertation/data/PAK_adm/PAK_adm2.shp")
+pak4 <- rgdal::readOGR("C:/Users/Christopher/Documents/Dissertation/data/PAK_adm/PAK_adm3.shp")
+
+plot(pak1) + plot(pak2) + plot(pak3) + plot(pak4)
+
+pak <- raster::bind(pak1, pak2, pak3, pak4)
+
+pak %>% 
+  ggplot() + 
+  geom_path(aes(x = long, y = lat, group = group)) + 
+  geom_point(data = gtd_pak,
+             aes(x = longitude,
+                 y = latitude, 
+                # size = (nkill + nwound),
+                 alpha = (nkill + nwound))) + 
+ labs(title = "Terrorist Attacks in Pakistan 1970 - 2017", 
+      y = "Lattitude", 
+      x = "Longitude", 
+      alpha = "Casualties", 
+      caption = "Terrorism data from START GTD") + 
+  theme_minimal()
+```
+
+```{r Pakistan Aid Data Core, cache=T}
+pak_aid_data <-  read.csv("C:/Users/Christopher/Documents/Dissertation/data/aiddata_core/AidDataCoreFull_ResearchRelease_Level1_v3.1.csv") %>% 
+  filter(recipient == "Pakistan")
+
+pak_aid_data %>% 
+  add_count(donor) %>% 
+  ggplot(aes(x = donor, 
+             y = log10(n))) + 
+  geom_col() + 
+  coord_flip() 
+  
+```
+
+```{r Pakistan USAID data, cache=T}
+pak_usaid <- openxlsx::read.xlsx("C:/Users/Christopher/Documents/Dissertation/data/USAID_webscraped_data_export_10-2011.xlsx", sheet = 2) %>% 
+  filter(Recipient == "Pakistan") %>% 
+  janitor::clean_names()
+```
+
+
+Webscraping Links: 
+
+https://web.archive.org/web/20181115054132/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex_17-01-2013.pdf
+https://web.archive.org/web/20181115054104/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex_24-01-2013_1.pdf
+```{r Pakistan SPI Way Back}
+require(rvest)
+# url <- "https://web.archive.org/web/20181113152632/http://www.pbs.gov.pk/spi"
+# test <- read_html(url) %>% 
+#   html_nodes("div a") %>% 
+#   html_attr("href") %>% 
+#   data.frame() %>% 
+#   filter(stringr::str_detect(.,
+#                              "[Aa][Nn][Nn][Ee][Xx]") == 1)
+
+urls_pagelist <- "https://web.archive.org/web/20181113152632/http://www.pbs.gov.pk/spi"
+
+for(i in 1:25){
+  urls_pagelist <- c(urls_pagelist, 
+                     paste0("https://web.archive.org/web/20181113152632/http://www.pbs.gov.pk/spi?page=", 
+                            i))
+}
+
+urls_annexure_cpi <- data.frame()
+
+for(i in 1:26){
+page <- read_html(urls_pagelist[i]) %>% 
+  html_nodes("div a") %>% 
+  html_attr("href") %>% 
+  data.frame() %>% 
+  filter(stringr::str_detect(.,
+                             "[Aa][Nn][Nn][Ee][Xx]") == 1) %>% 
+  janitor::clean_names() %>% 
+  select(url = x)
+
+urls_annexure_cpi <- rbind(urls_annexure_cpi, page)
+}
+urls_annexure_cpi <- urls_annexure_cpi %>% 
+  mutate(url = as.character(url))
+
+urls <- stringr::str_replace(urls_annexure_cpi$url,
+                     "/http://www.pbs.gov.pk",
+                     "if_/http://www.pbs.gov.pk")
+
+dir.create("C:/Users/Christopher/Documents/Dissertation/data/cpi_pak_pdf")
+pdf_path <- "C:/Users/Christopher/Documents/Dissertation/data/cpi_pak_pdf"
+for(i in 1:length(urls)){
+  download.file(as.character(urls[i]),
+                destfile = paste0(pdf_path, "/cpi_", i, ".pd"),
+                mode = "wb")
+}
+
+```
+
+```{r Pakistan Extract CPI Tables }
+require(tabulizer)
+test <- tesseract::ocr('https://web.archive.org/web/20181113152632if_/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex01112018.pdf')
+test_df <- data.frame(test[[5]])
+colnames <- c("item",
+              )
+```
+
+
+
+
+https://web.archive.org/web/20181113171741if_/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex01112018.pdf
+https://web.archive.org/web/20181113171741/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex01112018.pdf
+https://web.archive.org/web/20181113152632/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex01112018.pdf
+https://web.archive.org/web/20181113152632/http://www.pbs.gov.pk/sites/default/files//price_statistics/weekly_spi/spi_annex01112018.pdf
