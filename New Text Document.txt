@@ -1,0 +1,37 @@
+
+type I error with large sample sizes 
+
+p-values are hard to trust given the issues in the data 
+	hard to get accurate standard errors 
+	sample size makes standard errors smaller 
+
+given the problem of p-values, how does machine learning improve and avoid these problems 
+
+even if we had perfect data that fit all assumptions, and demonstrate that the NULL is not true, NHST is still insufficient 
+	why is NHST not enough to build theory in a good way? 
+	show and argue why this is not enough to provide evidence
+
+what is NHST getting wrong even with perfect data? 
+	showing feature importance 
+	the ability to predict abstracts away from this heuristic 
+	it is important to show which variables matter more 
+	the central importance is choosing which theories are better, and improvement. So, how does NHST fail where ML can help. 
+	this is basically just a fancy t-test, we have better methods so why not use them? 
+	we want to be able to give policy prescriptions, and looking at goodness of fit does not give that
+	why are coefficients and such
+	with perfect data, OLS/others cannot test between coefficient importance 
+	why is it difficult to compare coefficients? 
+	even if you have perfect data, there are other components like structural breaks that are hard to identify
+	how does ML help us to avoid these pitfalls
+
+Structure:
+__________
+1. If the data is problematic --> why is this a problem (SE, bias, assumptions, etc.) --> why ML doesn't suffer from these issues 
+2. The Ho is not that interesting to reject; different OLS results 
+
+
+describe simulated data to identify the problems 
+
+
+key for the committee: not sure how they will react 
+	

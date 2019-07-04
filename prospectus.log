@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.2.5)  28 JUN 2019 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.2.5)  4 JUL 2019 11:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -121,18 +121,91 @@ Package: abstract 2009/06/08 v1.2a configurable abstracts
 \absparindent=\skip46
 \absparsep=\skip47
 )
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/gra
+phicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/gra
+phics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/tri
+g.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg
+/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def
+/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen111
+\Gin@req@width=\dimen112
+)
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/grf
+file.sty
+Package: grffile 2017/06/30 v1.18 Extended file name support for graphics (HO)
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/kvo
+ptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/l
+txcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/k
+vsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/i
+nfwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/e
+texcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/i
+fluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/oberdiek/p
+dftexcmds.sty
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package grffile Info: Option `multidot' is set to `true'.
+Package grffile Info: Option `extendedchars' is set to `false'.
+Package grffile Info: Option `space' is set to `true'.
+Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
+)
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/titlesec/tit
 lesec.sty
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box27
 \beforetitleunit=\skip48
 \aftertitleunit=\skip49
-\ttl@plus=\dimen111
-\ttl@minus=\dimen112
+\ttl@plus=\dimen113
+\ttl@minus=\dimen114
 \ttl@toksa=\toks18
-\titlewidth=\dimen113
-\titlewidthlast=\dimen114
-\titlewidthfirst=\dimen115
+\titlewidth=\dimen115
+\titlewidthlast=\dimen116
+\titlewidthfirst=\dimen117
 )
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/natbib/natbi
 b.sty
@@ -161,26 +234,16 @@ Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 obsub-generic.sty
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
 Package hobsub Info: Skipping package `ifvtex' (already loaded).
 Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
 Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
 Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
@@ -201,11 +264,7 @@ Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 hook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/kvo
-ptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-)
-\@linkdim=\dimen116
+\@linkdim=\dimen118
 \Hy@linkcounter=\count93
 \Hy@pagecounter=\count94
 
@@ -242,10 +301,10 @@ Package hyperref Info: Bookmarks ON on input line 4772.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5125.
-\XeTeXLinkMargin=\dimen117
+\XeTeXLinkMargin=\dimen119
 \Fld@menulength=\count97
-\Field@Width=\dimen118
-\Fld@charsize=\dimen119
+\Field@Width=\dimen120
+\Fld@charsize=\dimen121
 Package hyperref Info: Hyper figures OFF on input line 6380.
 Package hyperref Info: Link nesting OFF on input line 6385.
 Package hyperref Info: Hyper index ON on input line 6388.
@@ -285,36 +344,32 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 
-(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def
-/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
-)
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/dvi
 psnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ))
-Package hyperref Info: Option `breaklinks' set `true' on input line 98.
-Package hyperref Info: Option `colorlinks' set `true' on input line 98.
+Package hyperref Info: Option `breaklinks' set `true' on input line 107.
+Package hyperref Info: Option `colorlinks' set `true' on input line 107.
 (./prospectus.aux)
 \openout1 = `prospectus.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 115.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 124.
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -352,8 +407,29 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/eps
+topdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/oberdiek/grf
+ext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/
+epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 \AtBeginShipoutBox=\box28
-Package hyperref Info: Link coloring ON on input line 115.
+Package hyperref Info: Link coloring ON on input line 124.
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nam
 eref.sty
@@ -365,56 +441,56 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count103
 )
-LaTeX Info: Redefining \ref on input line 115.
-LaTeX Info: Redefining \pageref on input line 115.
-LaTeX Info: Redefining \nameref on input line 115.
+LaTeX Info: Redefining \ref on input line 124.
+LaTeX Info: Redefining \pageref on input line 124.
+LaTeX Info: Redefining \nameref on input line 124.
 (./prospectus.out) (./prospectus.out)
 \@outlinefile=\write3
 \openout3 = `prospectus.out'.
 
-LaTeX Font Info:    Try loading font information for T1+phv on input line 131.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 140.
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv
 .fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <11> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 131.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 140.
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--167
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 167--170
+Underfull \hbox (badness 10000) in paragraph at lines 196--198
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--172
+Underfull \hbox (badness 10000) in paragraph at lines 198--201
 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 172.
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
+
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 203.
 
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 172.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 203.
 
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 172
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 203
 .
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.f
 d
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 172
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 203
 .
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.f
@@ -422,13 +498,13 @@ d
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 172.
+(Font)              <10> on input line 203.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 172.
+(Font)              <7> on input line 203.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 172.
+(Font)              <5> on input line 203.
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--175
+Underfull \hbox (badness 10000) in paragraph at lines 203--206
 
  []
 
@@ -436,32 +512,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--175
 
 {c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap
 /pdftex.map}] [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 311--314
+
+Package natbib Warning: Citation `shrodt2014' on page 4 undefined on input line
+ 329.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--349
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--318
+Underfull \hbox (badness 10000) in paragraph at lines 349--353
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--321
+Underfull \hbox (badness 10000) in paragraph at lines 353--356
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--323
+Underfull \hbox (badness 10000) in paragraph at lines 356--358
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--326
+Underfull \hbox (badness 10000) in paragraph at lines 358--361
 
  []
 
-[4]
-Overfull \hbox (99.43332pt too wide) in paragraph at lines 414--426
+[4] [5]
+Overfull \hbox (99.43332pt too wide) in paragraph at lines 449--461
 \OML/lmm/m/it/10 P\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 Civil War\OMS/lmsy/m/n/10 j
 :\OML/lmm/m/it/10 Large Minority\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 . And the al-t
 er-na-tive is: $\OML/lmm/m/it/10 H[] \OT1/lmr/m/n/10 : \OML/lmm/m/it/10 P\OT1/l
@@ -471,135 +552,166 @@ inority\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 6\OT1/lmr/m/n/10 = \OML/lmm/m/it/10 P
 Large Minority\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 . 
  []
 
-[5] [6]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 523.
+[6] [7] [8]
+<prospectus_files/figure-latex/Test statistic asymptotics-1.pdf, id=260, 469.75
+5pt x 325.215pt>
+File: prospectus_files/figure-latex/Test statistic asymptotics-1.pdf Graphic fi
+le (type pdf)
+<use prospectus_files/figure-latex/Test statistic asymptotics-1.pdf>
+Package pdftex.def Info: prospectus_files/figure-latex/Test statistic asymptoti
+cs-1.pdf  used on input line 622.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<prospectus_files/figure-latex/Test statistic asymptotics-2.pdf, id=261, 469.75
+5pt x 325.215pt>
+File: prospectus_files/figure-latex/Test statistic asymptotics-2.pdf Graphic fi
+le (type pdf)
+<use prospectus_files/figure-latex/Test statistic asymptotics-2.pdf>
+Package pdftex.def Info: prospectus_files/figure-latex/Test statistic asymptoti
+cs-2.pdf  used on input line 623.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (14.99884pt too wide) in paragraph at lines 622--624
+[][]
+ []
+
+[9 <./prospectus_files/figure-latex/Test statistic asymptotics-1.pdf>] [10 <./p
+rospectus_files/figure-latex/Test statistic asymptotics-2.pdf>] [11]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 728.
 
 
 (c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 523.
-[7] [8] [9]
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 728.
+[12]
 
-Package natbib Warning: Citation `shutte2017' on page 10 undefined on input lin
-e 683.
+Package natbib Warning: Citation `shutte2017' on page 13 undefined on input lin
+e 809.
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 744--746
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 870--872
 
  []
 
-[11] [12] [13] [14] (./prospectus.bbl [15]
-Underfull \hbox (badness 10000) in paragraph at lines 151--160
+[14] [15] [16] [17] [18] (./prospectus.bbl [19]
+Underfull \hbox (badness 10000) in paragraph at lines 177--186
 \T1/lmr/m/n/10 political -[] science -[] review / article / respect -[] for -[]
  human -[] rights -[] has -[] improved -[] over -[] time -[] modeling -[] the -
 []
  []
 
 
-Underfull \hbox (badness 1163) in paragraph at lines 162--170
+Underfull \hbox (badness 1163) in paragraph at lines 188--196
 \T1/lmr/m/it/10 i-cal Sci-ence Re-view\T1/lmr/m/n/10 , 97(1):75--90, Febru-ary 
 2003.  ISSN 1537-5943, 0003-0554.  doi: $10 . 1017 /
  []
 
 
-Underfull \hbox (badness 2027) in paragraph at lines 177--186
+Underfull \hbox (badness 2027) in paragraph at lines 203--212
 []\T1/lmr/m/n/10 Barbara Ged-des, Joseph Wright, and Er-ica Frantz.  Au-to-crat
 ic Break-down and Regime Tran-
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 177--186
+Underfull \hbox (badness 1383) in paragraph at lines 203--212
 \T1/lmr/m/n/10 si-tions: A New Data Set.  \T1/lmr/m/it/10 Per-spec-tives on Pol
 -i-tics\T1/lmr/m/n/10 , 12(2):313--331, June 2014.  ISSN 1537-
  []
 
 
-Underfull \hbox (badness 4060) in paragraph at lines 177--186
+Underfull \hbox (badness 4060) in paragraph at lines 203--212
 \T1/lmr/m/n/10 5927, 1541-0986.  doi: $10 . 1017 / S1537592714000851$.  URL [][
 ]$https : / / www . cambridge . org / core /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--186
+Underfull \hbox (badness 10000) in paragraph at lines 203--212
 \T1/lmr/m/n/10 journals / perspectives -[] on -[] politics / article / autocrat
 ic -[] breakdown -[] and -[] regime -[] transitions -[] a -[] new -[] data -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--215
+Underfull \hbox (badness 10000) in paragraph at lines 241--250
 [][]$\T1/lmr/m/n/10 http : / / www . cambridge . org / core / journals / politi
 cal -[] analysis / article / machine -[] learning -[] human -[] rights -[] and 
 -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--215
+Underfull \hbox (badness 10000) in paragraph at lines 241--250
 \T1/lmr/m/n/10 wrongs -[] how -[] the -[] successes -[] and -[] failures -[] of
  -[] supervised -[] learning -[] algorithms -[] can -[] inform -[] the -[] deba
 te -[] about -[]
  []
 
-[16]
-Underfull \hbox (badness 1275) in paragraph at lines 292--300
+[20]
+Underfull \hbox (badness 1275) in paragraph at lines 365--373
 []\T1/lmr/m/n/10 David Much-lin-ski, David Siroky, Jin-grui He, and Matthew Koc
 her.  Com-par-ing Ran-dom For-est
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--300
+Underfull \hbox (badness 10000) in paragraph at lines 365--373
 \T1/lmr/m/n/10 / / www . cambridge . org / core / journals / political -[] anal
 ysis / article / comparing -[] random -[] forest -[] with -[] logistic -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 302--311
+Underfull \hbox (badness 10000) in paragraph at lines 375--384
 \T1/lmr/m/n/10 political -[] science -[] review / article / reading -[] between
  -[] the -[] lines -[] prediction -[] of -[] political -[] violence -[] using -
 []
  []
 
-)
+[21])
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 901.
-[17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 901.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1061.
+[22]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1061.
 (./prospectus.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 901.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 901.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1061.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1061.
+
 Package rerunfilecheck Info: File `prospectus.out' has not changed.
-(rerunfilecheck)             Checksum: 366B15B37D1B0A9A7196E765865E5B1E;3957.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 901.
+(rerunfilecheck)             Checksum: 60BFBDA1D6330172785D4E76C94CC228;4457.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1061.
  ) 
 Here is how much of TeX's memory you used:
- 9501 strings out of 494562
- 136834 string characters out of 6175663
- 218092 words of memory out of 5000000
- 12985 multiletter control sequences out of 15000+600000
+ 9961 strings out of 494562
+ 146111 string characters out of 6175663
+ 227142 words of memory out of 5000000
+ 13383 multiletter control sequences out of 15000+600000
  41832 words of font info for 33 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 28i,6n,33p,457b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,6n,33p,499b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/l
-m-mathit.enc}{c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc
-/dvips/lm/lm-ec.enc}{c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fo
-nts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/Christopher/AppData/Roaming/TinyTeX/te
-xmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/Christopher/AppData/Roaming/Tin
-yTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/Christopher/AppData/
-Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/Christoph
-er/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users
-/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb
-><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm
-/lmr17.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1
-/public/lm/lmr7.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fo
-nts/type1/public/lm/lmri10.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/te
-xmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on prospectus.pdf (17 pages, 202403 bytes).
+m-mathex.enc}{c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc
+/dvips/lm/lm-mathsy.enc}{c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dis
+t/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/Christopher/AppData/Roaming/TinyTe
+X/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/Christopher/AppData/Roaming
+/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Users/Christopher/AppData/
+Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/Christoph
+er/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/User
+s/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.p
+fb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/
+lm/lmmi5.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/typ
+e1/public/lm/lmmi7.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist
+/fonts/type1/public/lm/lmr10.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/
+texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/Christopher/AppData/Roamin
+g/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/Christopher/AppDa
+ta/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/Christop
+her/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Use
+rs/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.
+pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public
+/lm/lmsy5.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/ty
+pe1/public/lm/lmsy7.pfb>
+Output written on prospectus.pdf (22 pages, 447751 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
- 439 compressed objects within 5 object streams
- 113 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 581 compressed objects within 6 object streams
+ 133 named destinations out of 1000 (max. 500000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 
