@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.2.5)  4 JUL 2019 11:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.2.5)  4 JUL 2019 16:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -553,7 +553,7 @@ Large Minority\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 .
  []
 
 [6] [7] [8]
-<prospectus_files/figure-latex/Test statistic asymptotics-1.pdf, id=260, 469.75
+<prospectus_files/figure-latex/Test statistic asymptotics-1.pdf, id=256, 469.75
 5pt x 325.215pt>
 File: prospectus_files/figure-latex/Test statistic asymptotics-1.pdf Graphic fi
 le (type pdf)
@@ -561,7 +561,7 @@ le (type pdf)
 Package pdftex.def Info: prospectus_files/figure-latex/Test statistic asymptoti
 cs-1.pdf  used on input line 622.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<prospectus_files/figure-latex/Test statistic asymptotics-2.pdf, id=261, 469.75
+<prospectus_files/figure-latex/Test statistic asymptotics-2.pdf, id=257, 469.75
 5pt x 325.215pt>
 File: prospectus_files/figure-latex/Test statistic asymptotics-2.pdf Graphic fi
 le (type pdf)
@@ -594,7 +594,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 870--872
 
  []
 
-[14] [15] [16] [17] [18] (./prospectus.bbl [19]
+[14] [15] [16] [17] [18] [19] (./prospectus.bbl [20]
 Underfull \hbox (badness 10000) in paragraph at lines 177--186
 \T1/lmr/m/n/10 political -[] science -[] review / article / respect -[] for -[]
  human -[] rights -[] has -[] improved -[] over -[] time -[] modeling -[] the -
@@ -645,7 +645,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--250
 te -[] about -[]
  []
 
-[20]
+[21]
 Underfull \hbox (badness 1275) in paragraph at lines 365--373
 []\T1/lmr/m/n/10 David Much-lin-ski, David Siroky, Jin-grui He, and Matthew Koc
 her.  Com-par-ing Ran-dom For-est
@@ -664,26 +664,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 375--384
 []
  []
 
-[21])
+[22])
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1061.
-[22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1061.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1157.
+[23]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1157.
 (./prospectus.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1061.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1061.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1157.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1157.
 
 Package rerunfilecheck Info: File `prospectus.out' has not changed.
-(rerunfilecheck)             Checksum: 60BFBDA1D6330172785D4E76C94CC228;4457.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1061.
+(rerunfilecheck)             Checksum: 783A199559AF49DB1358D5D12887BDEB;4333.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1157.
  ) 
 Here is how much of TeX's memory you used:
- 9961 strings out of 494562
- 146111 string characters out of 6175663
- 227142 words of memory out of 5000000
- 13383 multiletter control sequences out of 15000+600000
+ 9958 strings out of 494562
+ 146058 string characters out of 6175663
+ 227100 words of memory out of 5000000
+ 13381 multiletter control sequences out of 15000+600000
  41832 words of font info for 33 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  36i,6n,33p,499b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -708,10 +708,10 @@ rs/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.
 pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public
 /lm/lmsy5.pfb><c:/Users/Christopher/AppData/Roaming/TinyTeX/texmf-dist/fonts/ty
 pe1/public/lm/lmsy7.pfb>
-Output written on prospectus.pdf (22 pages, 447751 bytes).
+Output written on prospectus.pdf (23 pages, 455746 bytes).
 PDF statistics:
- 628 PDF objects out of 1000 (max. 8388607)
- 581 compressed objects within 6 object streams
- 133 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 632 PDF objects out of 1000 (max. 8388607)
+ 584 compressed objects within 6 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 
