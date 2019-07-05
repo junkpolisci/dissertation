@@ -29,6 +29,7 @@ for(i in 1:10000){
   loop <- rbind(loop, lm, lm_wrong)
 }
 
+# Percent significant 
 loop %>% 
   filter(term %in% c("x1", "x2", "x3", "x4", "x5")) %>% 
   mutate(sig = ifelse(p.value<=.05, 
@@ -62,17 +63,24 @@ loop %>%
        caption = "Generative equation: y = 1 + .1(x1) + .5(x2) + 1(x3) + 0(x4) + e. e ~ N(0,1). All x ~ N(x#,2)") + 
   theme(plot.title = element_text(hjust = .5))
 
+# Cofficients
 loop %>% 
-  mutate(p = round(p.value, 3)) %>% 
-  ggplot(aes()) + 
-  geom_boxplot() + 
-  facet_grid(Right~term)
-
-require('Hmisc')
-rcorr(as.matrix(test))
+  filter(term %in% c("x1", "x2", "x3", "x4", "x5")) %>% 
+  mutate(true = case_when(term == "x1" ~ 0.1,
+                          term == "x2" ~ 0.5, 
+                          term == "x3" ~ 1.0,
+                          term == "x4" ~ 0.0, 
+                          term == "x5" ~ 0.0)) %>% 
+  ggplot(aes(x = it, y = estimate)) + 
+  geom_point(aes(color = term), size = .01) + 
+  geom_hline(aes(yintercept = true)) +
+  facet_wrap(Right~term, ncol = 4)
 
 loop %>% 
-  count(term)
+  filter(term %in% c("x1", "x2", "x3", "x4", "x5")) %>% 
+  ggplot(aes(x = it, y = std.error)) + 
+  geom_point(aes(color = term), size = .01) + 
+  facet_wrap(Right~term, ncol = 4)
 
 loop %>% 
   filter(term %in% c("x1", "x2", "x3")) %>% 
